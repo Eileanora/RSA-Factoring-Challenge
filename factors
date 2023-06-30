@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import sys
 
+
 def first_factor(num):
     if num % 2 == 0:
         return 2
@@ -14,9 +15,13 @@ def first_factor(num):
 
 def main():
     test_file = open(sys.argv[1], "r")
-    num = int(test_file.read())
-    factor = first_factor(num)
-    print("{}={}*{}".format(num, num // factor, factor))
+    while True:
+        try:
+            num = int(test_file.readline())
+            factor = first_factor(num)
+            print("{}={}*{}".format(num, num // factor, factor))
+        except:
+            break
     test_file.close()
 
 if __name__ == "__main__":
