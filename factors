@@ -15,10 +15,16 @@ def first_factor(num):
 
 def main():
     test_file = open(sys.argv[1], "r")
+    nums_map = {}
     while True:
         try:
             num = int(test_file.readline())
-            factor = first_factor(num)
+            factor = 0
+            if num in nums_map:
+                factor = nums_map[num]
+            else:
+                factor = first_factor(num)
+                nums_map[num] = factor
             print("{}={}*{}".format(num, num // factor, factor))
         except:
             break
