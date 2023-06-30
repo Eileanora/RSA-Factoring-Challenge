@@ -13,22 +13,23 @@ def first_factor(num):
     return 1
 
 
-def main():
+if len(sys.argv) != 2:
+    exit()
+try:
     test_file = open(sys.argv[1], "r")
-    nums_map = {}
-    while True:
-        try:
-            num = int(test_file.readline())
-            factor = 0
-            if num in nums_map:
-                factor = nums_map[num]
-            else:
-                factor = first_factor(num)
-                nums_map[num] = factor
-            print("{}={}*{}".format(num, num // factor, factor))
-        except:
-            break
-    test_file.close()
-
-if __name__ == "__main__":
-    main()
+except:
+    exit()
+nums_map = {}
+while True:
+    try:
+        num = int(test_file.readline())
+        factor = 0
+        if num in nums_map:
+            factor = nums_map[num]
+        else:
+            factor = first_factor(num)
+            nums_map[num] = factor
+        print("{}={}*{}".format(num, num // factor, factor))
+    except:
+        break
+test_file.close()
