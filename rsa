@@ -1,29 +1,21 @@
 #!/usr/bin/python3
 import sys
-"""prime_factorization.py: Contains a function that
-returns the prime factorization of a number"""
 
-
-def prime_factorization(num):
-    factors = []
-    while num % 2 == 0:
-        factors.append(2)
-        num /= 2
+def first_factor(num):
+    if num % 2 == 0:
+        return 2
     for i in range(3, int(num ** 0.5) + 1, 2):
-        while num % i == 0:
-            factors.append(i)
-            num /= i
-    if num > 2:
-        factors.append(int(num))
-    return factors
+        if num % i == 0:
+            return i
+    return num
 
 
 def main():
     test_file = open(sys.argv[1], "r")
     num = int(test_file.read())
-    factors = prime_factorization(num)
-    factors.reverse()
-    print("{}={}".format(num, "*".join(map(str, factors))))
+    factor = first_factor(num)
+    print("{}={}*{}".format(num, num // factor, factor))
+    test_file.close()
 
 if __name__ == "__main__":
     main()
